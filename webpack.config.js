@@ -23,8 +23,20 @@ module.exports = {
 				exclude: /node_modules/,
 				loaders: ['react-hot', 'babel-loader']
 			},
-			{ test: /\.json$/, loaders: ['react-hot', 'json-loader'] },
-			{	test: /\.sass$/, loaders: ['react-hot', 'style', 'css', 'sass-loader'] } // don't forget the style and css for sass loader
+			{
+				test: /\.json$/,
+				loaders: ['react-hot', 'json-loader']
+			},
+			{ // cannot include react-hot with this loader
+				test: /\.css$/,
+				loader: 'style!css?modules',
+				include: /flexboxgrid/
+			},
+			{ // don't forget the style and css for sass loader
+				test: /\.sass$/,
+				loaders: ['react-hot', 'style', 'css', 'sass-loader'],
+				exclude: /flexboxgrid/
+			}
 		]
 	},
 	plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()],
