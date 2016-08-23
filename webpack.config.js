@@ -4,9 +4,12 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 	filename: 'index.html',
 	inject: 'body'
 })
+var webpack = require('webpack');
 
 module.exports = {
 	entry: [
+		'webpack-dev-server/client?http://localhost:8080',
+		'webpack/hot/only-dev-server',
 		'./app/index.js'
 	],
 	output: {
@@ -18,13 +21,16 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				loaders: ['react-hot', 'babel-loader']
 			},
-			{ test: /\.json$/, loader: 'json-loader' },
-			{	test: /\.sass$/, loader: 'sass-loader' }
+			{ test: /\.json$/, loaders: ['react-hot', 'json-loader'] },
+			{	test: /\.sass$/, loaders: ['react-hot', 'style', 'css', 'sass-loader'] } // don't forget the style and css for sass loader
 		]
 	},
-	plugins: [HTMLWebpackPluginConfig],
+	plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()],
+	devServer: {
+		hot: true
+	},
 	node: {
 		fs: 'empty',
 		net: 'empty',
