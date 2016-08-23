@@ -4,15 +4,19 @@ import RecipeContainer from '../containers/RecipeContainer';
 import MainLayout from '../containers/MainLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from '../styles/muiTheme';
+import store from '../RecipeStore';
+import { Provider } from 'mobx-react';
 
 const routes = (
-	<MuiThemeProvider muiTheme={muiTheme}>
-		<Router history={browserHistory}>
-			<Route path="/" component={MainLayout}>
-				<IndexRoute component={RecipeContainer} />
-			</Route>
-		</Router>
-	</MuiThemeProvider>
+	<Provider store={store}>
+		<MuiThemeProvider store={store} muiTheme={muiTheme}>
+			<Router history={browserHistory}>
+				<Route path="/" component={MainLayout}>
+					<IndexRoute component={RecipeContainer} />
+				</Route>
+			</Router>
+		</MuiThemeProvider>
+	</Provider>
 )
 
 export default routes;
