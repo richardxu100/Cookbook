@@ -15,7 +15,7 @@ export default class ModalForm extends Component {
     const ingredients = this.ingredients.input.value;
     const imageURL = this.imageURL.input.value;
     console.log(recipeName, ingredients, imageURL);
-    this.props.onSubmit()
+    this.props.onSubmit(recipeName, ingredients, imageURL);
   }
 
   render() {

@@ -11,7 +11,6 @@ export default class MainLayout extends Component {
   }
 
   render() {
-    console.log('store is: ', store);
     return (
       <div>
         <AppBar title="CookBook" />

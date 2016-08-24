@@ -26,8 +26,8 @@ class RecipeStore {
     this.isAddOpen = !this.isAddOpen;
   }
 
-  handleSubmitRecipe = (name, ingredients, imageURL) => {
-    const newRecipes = [...recipes, new Recipe(name, ingredients, imageURL)];
+  handleAddRecipe = (name, ingredients, imageURL) => {
+    const newRecipes = [...this.recipes, new Recipe(name, ingredients, imageURL)];
     this.recipes = newRecipes;
   }
 }
