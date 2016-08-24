@@ -59,6 +59,7 @@ export default class ModalForm extends Component {
         onTouchTap={this.handleSubmitRecipe}
       />,
     ];
+    console.log('the state is: ', this.state);
     return (
       <Dialog
         title={this.props.title}
@@ -77,32 +78,32 @@ export default class ModalForm extends Component {
           }
             <br />
         { this.props.id ?
-            <TextField
-              style={styles.textField}
-              hintText="Ingredients: separated by a comma, for, each, ingredient"
-              fullWidth={true}
-              value={this.state.ingredients}
-              ref={r => this.ingredients = r}
-              onChange={this.handleIngredientsChange} /> :
-            <TextField
-              style={styles.textField}
-              ref={r => this.ingredients = r}
-              hintText="Ingredients: separated by a comma, for, each, ingredient"
-              fullWidth={true} />
+          <TextField
+            style={styles.textField}
+            hintText="Ingredients: separated by a comma, for, each, ingredient"
+            fullWidth={true}
+            value={this.state.ingredients}
+            ref={r => this.ingredients = r}
+            onChange={this.handleIngredientsChange} /> :
+          <TextField
+            style={styles.textField}
+            ref={r => this.ingredients = r}
+            hintText="Ingredients: separated by a comma, for, each, ingredient"
+            fullWidth={true} />
           }
         { this.props.id ?
-            <TextField
-              style={styles.textField}
-              hintText="Optional Image URL"
-              fullWidth={true}
-              value={this.state.imageURL}
-              ref={r => this.imageURL = r}
-              onChange={this.handleImageURLChange} /> :
-            <TextField
-              style={styles.textField}
-              hintText="Optional Image URL"
-              fullWidth={true}
-              ref={r => this.imageURL = r} />
+          <TextField
+            style={styles.textField}
+            hintText="Optional Image URL"
+            fullWidth={true}
+            value={this.state.imageURL}
+            ref={r => this.imageURL = r}
+            onChange={this.handleImageURLChange} /> :
+          <TextField
+            style={styles.textField}
+            hintText="Optional Image URL"
+            fullWidth={true}
+            ref={r => this.imageURL = r} />
           }
       </Dialog>
     )

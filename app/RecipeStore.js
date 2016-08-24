@@ -23,8 +23,7 @@ class RecipeStore {
   toggleEditOpen = () => this.isEditOpen = !this.isEditOpen;
   toggleAddOpen = () => this.isAddOpen = !this.isAddOpen;
   ingredientsToArray = ingredients => ingredients.trim().split(',').map(i => i.trim());
-  changeRecipe = (recipe, id, name, ingredients, imageURL) =>
-      new Recipe(name, this.ingredientsToArray(ingredients), imageURL, id);
+  changeRecipe = (recipe, id, name, ingredients, imageURL) => new Recipe(name, this.ingredientsToArray(ingredients), imageURL, id);
 
   handleAddRecipe = (name, ingredients, imageURL) => {
     const ingredientsArray = this.ingredientsToArray(ingredients);
