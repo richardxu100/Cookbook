@@ -30,6 +30,9 @@ const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL, deleteRecipe,
         toggleOpen={toggleEditOpen}
         onSubmit={onEditRecipe}
         id={id}
+        name={name}
+        ingredients={ingredients}
+        imageURL={imageURL}
         />
     </div>
   )

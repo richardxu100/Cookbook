@@ -8,8 +8,26 @@ export default class ModalForm extends Component {
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
     toggleOpen: PropTypes.func.isRequired,
-    id: PropTypes.number
+    id: PropTypes.number,
+    name: PropTypes.string,
+    ingredients: PropTypes.object,
+    imageURL: PropTypes.string
   }
+
+  constructor(props) {
+    super(props);
+    // if (props.id) { // only add internal state if there's an id, which means this is an edit modal. Allows us to change the inputs in the form
+    this.state = {
+      name: props.name ? props.name : '',
+      ingredients: props.ingredients ? props.ingredients.join(', ') : '',
+      imageURL: props.imageURL ? props.imageURL : ''
+    }
+    // }
+  }
+
+  handleNameChange = (e) => this.setState({name: e.target.value});
+  handleIngredientsChange = (e) => this.setState({ingredients: e.target.value});
+  handleImageURLChange = (e) => this.setState({imageURL: e.target.value})
 
   handleSubmitRecipe = () => {
     const recipeName = this.recipeName.input.value;
@@ -26,7 +44,10 @@ export default class ModalForm extends Component {
   }
 
   render() {
-    const { isOpen, toggleOpen } = this.props;
+    const { isOpen, toggleOpen} = this.props;
+    if (this.props.id) {
+      const { name, ingredients, imageURL } = this.state;
+    }
     const actions = [
       <FlatButton
         label="Cancel"
@@ -43,19 +64,29 @@ export default class ModalForm extends Component {
         title={this.props.title}
         actions={actions}
         modal={true}
-        open={isOpen}
-      >
-        <TextField hintText="Recipe Name" ref={r => this.recipeName = r} /> <br />
+        open={isOpen}>
+        <TextField
+          hintText="Recipe Name"
+          ref={r => this.recipeName = r}
+          value={this.props.id ? this.state.name : ''}
+          onChange={this.handleNameChange}
+          /> <br />
         <TextField
           style={styles.textField}
           hintText="Ingredients: separated by a comma, for, each, ingredient"
           fullWidth={true}
-          ref={r => this.ingredients = r} />
+          ref={r => this.ingredients = r}
+          value={this.props.id ? this.state.ingredients : ''}
+          onChange={this.handleIngredientsChange}
+          />
         <TextField
           style={styles.textField}
           hintText="Optional Image URL"
           fullWidth={true}
-          ref={r => this.imageURL = r} />
+          ref={r => this.imageURL = r}
+          value={this.props.id ? this.state.imageURL : ''}
+          onChange={this.handleImageURLChange}
+          />
       </Dialog>
     )
   }
