@@ -7,20 +7,28 @@ import styles from '../styles/styles';
 export default class ModalForm extends Component {
   static propTypes = {
     isOpen: PropTypes.bool,
-    toggleEditOpen: PropTypes.func
+    toggleOpen: PropTypes.func
+  }
+
+  handleSubmitRecipe = () => {
+    const recipeName = this.recipeName.input.value;
+    const ingredients = this.ingredients.input.value;
+    const imageURL = this.imageURL.input.value;
+    console.log(recipeName, ingredients, imageURL);
+    this.props.onSubmit()
   }
 
   render() {
-    const { isOpen, toggleEditOpen } = this.props;
+    const { isOpen, toggleOpen } = this.props;
     const actions = [
       <FlatButton
         label="Cancel"
-        onTouchTap={toggleEditOpen}
+        onTouchTap={toggleOpen}
       />,
       <FlatButton
         label="Edit or Add"
         primary={true}
-        onTouchTap={toggleEditOpen}
+        onTouchTap={this.handleSubmitRecipe}
       />,
     ];
     return (
@@ -30,9 +38,17 @@ export default class ModalForm extends Component {
         modal={true}
         open={isOpen}
       >
-        <TextField hintText="Recipe Name" /> <br />
-        <TextField style={styles.textField} hintText="Ingredients: separated by a comma, for, each, ingredient" fullWidth={true} />
-        <TextField style={styles.textField} hintText="Optional Image Link" fullWidth={true} />
+        <TextField hintText="Recipe Name" ref={r => this.recipeName = r} /> <br />
+        <TextField
+          style={styles.textField}
+          hintText="Ingredients: separated by a comma, for, each, ingredient"
+          fullWidth={true}
+          ref={r => this.ingredients = r} />
+        <TextField
+          style={styles.textField}
+          hintText="Optional Image URL"
+          fullWidth={true}
+          ref={r => this.imageURL = r} />
       </Dialog>
     )
   }

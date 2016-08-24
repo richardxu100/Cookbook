@@ -10,17 +10,25 @@ import { observer } from 'mobx-react';
 @observer
 export default class RecipeContainer extends Component {
 	render() {
-		const { toggleEditOpen, isEditOpen } = this.props.store;
+		const { toggleEditOpen, isEditOpen, isAddOpen, toggleAddOpen, handleSubmitRecipe, handleEditRecipe } = this.props.store;
 		return (
 			<div>
 				<RecipeList toggleEditOpen={toggleEditOpen} />
-				<ModalForm title="Add a Recipe" isOpen={false} />
+				<ModalForm
+					title="Add a Recipe"
+					isOpen={isAddOpen}
+					toggleOpen={toggleAddOpen} 
+					onSubmit={handleSubmitRecipe}
+					/>
 				<ModalForm
 					title="Edit a Recipe"
 					isOpen={isEditOpen}
-					toggleEditOpen={toggleEditOpen} 
+					toggleOpen={toggleEditOpen}
+					onSubmit={handleEditRecipe}
 					/> {/* the open value on this dialog (toggleEditOpen) will be triggered by the edit button */}
-				<FloatingActionButton style={styles.floatingActionButton}>
+				<FloatingActionButton
+					style={styles.floatingActionButton}
+					onTouchTap={toggleAddOpen}>
 					<ContentAdd />
 				</FloatingActionButton>
 			</div>
