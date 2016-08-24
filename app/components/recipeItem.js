@@ -3,26 +3,21 @@ import { Card, CardHeader, CardMedia, CardTitle, CardText, CardActions } from 'm
 import FlatButton from 'material-ui/FlatButton';
 import styles from '../styles/styles';
 
-const RecipeItem = ({ toggleEditOpen }) => {
+const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL }) => {
   return (
     <Card style={styles.recipeCard}>
       <CardHeader
-        title="Recipe Name"
+        title={name}
         actAsExpander={true}
         showExpandableButton={true}
       />
-      <CardMedia
-        expandable={true}
-      >
-        <img src="http://i.dailymail.co.uk/i/pix/2016/05/18/15/3455092D00000578-3596928-image-a-20_1463582580468.jpg" />
+      <CardMedia expandable={true}>
+        <img src={imageURL} />
       </CardMedia>
       <CardTitle expandable={true} title="Ingredients" />
-      <CardText expandable={true}>
-        #1. Thing
-      </CardText>
-      <CardText expandable={true}>
-        #2. Another Thing
-      </CardText>
+      {ingredients.map((ingredient, i) =>
+        <CardText key={i} expandable={true}>#{i+1} {ingredient}</CardText>
+      )}
       <CardActions>
         <FlatButton onClick={toggleEditOpen} label="Edit" />
         <FlatButton label="Delete" />
@@ -32,7 +27,10 @@ const RecipeItem = ({ toggleEditOpen }) => {
 }
 
 RecipeItem.PropTypes = {
-
+  toggleEditOpen: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  ingredients: PropTypes.array.isRequired,
+  imageURL: PropTypes.string
 }
 
 export default RecipeItem;
