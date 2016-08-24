@@ -23,13 +23,10 @@ class RecipeStore {
   toggleEditOpen = () => this.isEditOpen = !this.isEditOpen;
   toggleAddOpen = () => this.isAddOpen = !this.isAddOpen;
   ingredientsToArray = ingredients => ingredients.trim().split(',').map(i => i.trim());
-  changeRecipe = (recipe, id, name, ingredients, imageURL) => {
-    if (recipe.id === id)
+  changeRecipe = (recipe, id, name, ingredients, imageURL) =>
       return new Recipe(name, this.ingredientsToArray(ingredients), imageURL, id);
-  }
 
   handleAddRecipe = (name, ingredients, imageURL) => {
-    // const ingredientsArray = ingredients.trim().split(',').map(i => i.trim());
     const ingredientsArray = this.ingredientsToArray(ingredients);
     const newRecipes = [...this.recipes, new Recipe(name, ingredientsArray, imageURL)];
     this.recipes = newRecipes;
@@ -37,8 +34,11 @@ class RecipeStore {
   }
 
   handleEditRecipe = (id, name, ingredients, imageURL) => {
-    console.log('id is: ', id);
-    const newRecipes = this.recipes.map(recipe => this.changeRecipe(recipe, id, name, ingredients, imageURL))
+    const newRecipes = this.recipes.map(recipe => {
+      return recipe.id === id ?
+        this.changeRecipe(recipe, id, name, ingredients, imageURL) :
+        recipe
+    })
     this.recipes = newRecipes;
     console.log('new recipes: ', newRecipes);
     this.toggleEditOpen();
@@ -48,7 +48,6 @@ class RecipeStore {
     const newRecipes = this.recipes.filter(recipe => recipe.id !== id);
     this.recipes = newRecipes;
   }
-
 }
 
 const store = window.store = new RecipeStore();

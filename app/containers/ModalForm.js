@@ -33,7 +33,7 @@ export default class ModalForm extends Component {
         onTouchTap={toggleOpen}
       />,
       <FlatButton
-        label="Edit or Add"
+        label={this.props.id ? 'Edit' : 'Add'}
         primary={true}
         onTouchTap={this.handleSubmitRecipe}
       />,
