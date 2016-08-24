@@ -44,19 +44,19 @@ export default class ModalForm extends Component {
   }
 
   render() {
-    const { isOpen, toggleOpen} = this.props;
+    const { isOpen, toggleOpen, id } = this.props;
     if (this.props.id) {
       const { name, ingredients, imageURL } = this.state;
     }
     const actions = [
       <FlatButton
         label="Cancel"
-        onTouchTap={toggleOpen}
+        onTouchTap={toggleOpen.bind(this, id)}
       />,
       <FlatButton
         label={this.props.id ? 'Edit' : 'Add'}
         primary={true}
-        onTouchTap={this.handleSubmitRecipe}
+        onTouchTap={this.handleSubmitRecipe.bind(this, id)}
       />,
     ];
     console.log('the state is: ', this.state);

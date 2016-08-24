@@ -24,12 +24,6 @@ class RecipeStore {
 
   toggleEditOpen = (id) => {
     console.log('the id is: ', id);
-    // const newRecipes = this.recipes.map(recipe =>
-    //   recipe.id === id ?
-    //     recipe.isEditOpen = !recipe.isEditOpen :
-    //     recipe
-    // )
-    // this.recipes = newRecipes;
     this.recipes.forEach(recipe => recipe.id === id ? recipe.isEditOpen = !recipe.isEditOpen : recipe);
   }
 
@@ -51,8 +45,8 @@ class RecipeStore {
         recipe
     })
     this.recipes = newRecipes;
-    console.log('new recipes: ', newRecipes);
-    this.toggleEditOpen(id);
+    console.log('id in handleEditRecipe: ', id);
+    this.toggleEditOpen.bind(this, id);
   }
 
   handleDeleteRecipe = (id) => {
