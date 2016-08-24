@@ -3,7 +3,7 @@ import { Card, CardHeader, CardMedia, CardTitle, CardText, CardActions } from 'm
 import FlatButton from 'material-ui/FlatButton';
 import styles from '../styles/styles';
 
-const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL }) => {
+const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL, deleteRecipe, id }) => {
   return (
     <Card style={styles.recipeCard}>
       <CardHeader
@@ -11,16 +11,14 @@ const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL }) => {
         actAsExpander={true}
         showExpandableButton={true}
       />
-      <CardMedia expandable={true}>
-        <img src={imageURL} />
-      </CardMedia>
+      <CardMedia expandable={true}><img src={imageURL} /></CardMedia>
       <CardTitle expandable={true} title="Ingredients" />
       {ingredients.map((ingredient, i) =>
-        <CardText key={i} expandable={true}>#{i+1} {ingredient}</CardText>
+        <CardText key={i} expandable={true}>#{i+1}. {ingredient}</CardText>
       )}
       <CardActions>
         <FlatButton onClick={toggleEditOpen} label="Edit" />
-        <FlatButton label="Delete" />
+        <FlatButton onClick={deleteRecipe.bind(this, id)} label="Delete" />
       </CardActions>
     </Card>
   )

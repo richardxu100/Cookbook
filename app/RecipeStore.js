@@ -29,6 +29,17 @@ class RecipeStore {
     this.recipes = newRecipes;
     this.toggleAddOpen();
   }
+
+  handleEditRecipe = (id, name, ingredients, imageURL) => {
+
+    this.toggleEditOpen();
+  }
+
+  handleDeleteRecipe = (id) => {
+    const newRecipes = this.recipes.filter(recipe => recipe.id !== id);
+    this.recipes = newRecipes;
+  }
+
 }
 
 const store = window.store = new RecipeStore();
