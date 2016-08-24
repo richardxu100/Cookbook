@@ -3,7 +3,7 @@ import RecipeItem from './recipeItem';
 import { Grid, Col, Row } from 'react-flexbox-grid';
 import styles from '../styles/styles';
 
-const RecipeList = ({ toggleEditOpen, onDeleteRecipe, recipes }) => {
+const RecipeList = ({ toggleEditOpen, onDeleteRecipe, recipes, isOpen, onEditRecipe }) => {
   return (
     <Grid style={styles.recipeGrid}>
       <Row>
@@ -15,7 +15,9 @@ const RecipeList = ({ toggleEditOpen, onDeleteRecipe, recipes }) => {
               imageURL={recipe.imageURL}
               name={recipe.name}
               deleteRecipe={onDeleteRecipe}
-              id={recipe.id} />
+              id={recipe.id}
+              isOpen={isOpen}
+              onEditRecipe={onEditRecipe}/>
           </Col>
         )}
       </Row>

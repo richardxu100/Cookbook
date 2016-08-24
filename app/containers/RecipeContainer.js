@@ -17,6 +17,8 @@ export default class RecipeContainer extends Component {
 					toggleEditOpen={toggleEditOpen}
 					recipes={recipes}
 					onDeleteRecipe={handleDeleteRecipe}
+					isOpen={isEditOpen}
+	        onEditRecipe={handleEditRecipe}
 					/>
 				<ModalForm
 					title="Add a Recipe"
@@ -24,12 +26,6 @@ export default class RecipeContainer extends Component {
 					toggleOpen={toggleAddOpen}
 					onSubmit={handleAddRecipe}
 					/>
-				<ModalForm
-					title="Edit a Recipe"
-					isOpen={isEditOpen}
-					toggleOpen={toggleEditOpen}
-					onSubmit={handleEditRecipe}
-					/> {/* the open value on this dialog (toggleEditOpen) will be triggered by the edit button */}
 				<FloatingActionButton
 					style={styles.floatingActionButton}
 					onTouchTap={toggleAddOpen}>

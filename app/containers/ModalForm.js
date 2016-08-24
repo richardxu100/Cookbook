@@ -6,8 +6,9 @@ import styles from '../styles/styles';
 
 export default class ModalForm extends Component {
   static propTypes = {
-    isOpen: PropTypes.bool,
-    toggleOpen: PropTypes.func
+    isOpen: PropTypes.bool.isRequired,
+    toggleOpen: PropTypes.func.isRequired,
+    id: PropTypes.number
   }
 
   handleSubmitRecipe = () => {
@@ -15,7 +16,13 @@ export default class ModalForm extends Component {
     const ingredients = this.ingredients.input.value;
     const imageURL = this.imageURL.input.value;
     console.log(recipeName, ingredients, imageURL);
-    this.props.onSubmit(recipeName, ingredients, imageURL);
+    if (this.props.id) {
+      const { onSubmit, id } = this.props;
+      onSubmit(id, recipeName, ingredients, imageURL);
+    }
+    else {
+      this.props.onSubmit(recipeName, ingredients, imageURL);
+    }
   }
 
   render() {
