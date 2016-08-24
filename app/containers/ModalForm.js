@@ -16,13 +16,13 @@ export default class ModalForm extends Component {
 
   constructor(props) {
     super(props);
-    // if (props.id) { // only add internal state if there's an id, which means this is an edit modal. Allows us to change the inputs in the form
-    this.state = {
-      name: props.name ? props.name : '',
-      ingredients: props.ingredients ? props.ingredients.join(', ') : '',
-      imageURL: props.imageURL ? props.imageURL : ''
+    if (props.id) { // only add internal state if there's an id, which means this is an edit modal. Allows us to change the inputs in the form
+      this.state = {
+        name: props.name,
+        ingredients: props.ingredients.join(', '),
+        imageURL: props.imageURL
+      }
     }
-    // }
   }
 
   handleNameChange = (e) => this.setState({name: e.target.value});
@@ -65,28 +65,45 @@ export default class ModalForm extends Component {
         actions={actions}
         modal={true}
         open={isOpen}>
-        <TextField
-          hintText="Recipe Name"
-          ref={r => this.recipeName = r}
-          value={this.props.id ? this.state.name : ''}
-          onChange={this.handleNameChange}
-          /> <br />
-        <TextField
-          style={styles.textField}
-          hintText="Ingredients: separated by a comma, for, each, ingredient"
-          fullWidth={true}
-          ref={r => this.ingredients = r}
-          value={this.props.id ? this.state.ingredients : ''}
-          onChange={this.handleIngredientsChange}
-          />
-        <TextField
-          style={styles.textField}
-          hintText="Optional Image URL"
-          fullWidth={true}
-          ref={r => this.imageURL = r}
-          value={this.props.id ? this.state.imageURL : ''}
-          onChange={this.handleImageURLChange}
-          />
+        { this.props.id ?
+          <TextField
+            hintText="Recipe Name"
+            value={this.state.name}
+            ref={r => this.recipeName = r}
+            onChange={this.handleNameChange} /> :
+          <TextField
+            hintText="Recipe Name"
+            ref={r => this.recipeName = r} />
+          }
+            <br />
+        { this.props.id ?
+            <TextField
+              style={styles.textField}
+              hintText="Ingredients: separated by a comma, for, each, ingredient"
+              fullWidth={true}
+              value={this.state.ingredients}
+              ref={r => this.ingredients = r}
+              onChange={this.handleIngredientsChange} /> :
+            <TextField
+              style={styles.textField}
+              ref={r => this.ingredients = r}
+              hintText="Ingredients: separated by a comma, for, each, ingredient"
+              fullWidth={true} />
+          }
+        { this.props.id ?
+            <TextField
+              style={styles.textField}
+              hintText="Optional Image URL"
+              fullWidth={true}
+              value={this.state.imageURL}
+              ref={r => this.imageURL = r}
+              onChange={this.handleImageURLChange} /> :
+            <TextField
+              style={styles.textField}
+              hintText="Optional Image URL"
+              fullWidth={true}
+              ref={r => this.imageURL = r} />
+          }
       </Dialog>
     )
   }
