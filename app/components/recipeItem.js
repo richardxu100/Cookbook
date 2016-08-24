@@ -3,8 +3,18 @@ import { Card, CardHeader, CardMedia, CardTitle, CardText, CardActions } from 'm
 import FlatButton from 'material-ui/FlatButton';
 import ModalForm from '../containers/ModalForm';
 import styles from '../styles/styles';
+import { observer } from 'mobx-react';
 
-const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL, deleteRecipe, id, isOpen, onEditRecipe }) => {
+const RecipeItem = observer(({
+  toggleEditOpen,
+  name,
+  ingredients,
+  imageURL,
+  deleteRecipe,
+  id,
+  onEditRecipe,
+  recipe
+}) => {
   return (
     <div>
       <Card style={styles.recipeCard}>
@@ -15,18 +25,18 @@ const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL, deleteRecipe,
         />
         <CardMedia expandable={true}><img src={imageURL} /></CardMedia>
         <CardTitle expandable={true} title="Ingredients" />
-        {ingredients.map((ingredient, i) =>
+        {ingredients && ingredients.map((ingredient, i) =>
           <CardText key={i} expandable={true}>#{i+1}. {ingredient}</CardText>
         )}
         <CardActions>
-          <FlatButton onClick={toggleEditOpen} label="Edit" />
+          <FlatButton onClick={toggleEditOpen.bind(this, id)} label="Edit" />
           <FlatButton onClick={deleteRecipe.bind(this, id)} label="Delete" />
         </CardActions>
       </Card>
 
       <ModalForm
         title="Edit a Recipe"
-        isOpen={isOpen}
+        isOpen={recipe.isEditOpen}
         toggleOpen={toggleEditOpen}
         onSubmit={onEditRecipe}
         id={id}
@@ -36,10 +46,11 @@ const RecipeItem = ({ toggleEditOpen, name, ingredients, imageURL, deleteRecipe,
         />
     </div>
   )
-}
+})
 
 RecipeItem.PropTypes = {
   toggleEditOpen: PropTypes.func.isRequired,
+  deleteRecipe: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   ingredients: PropTypes.array.isRequired,
   imageURL: PropTypes.string

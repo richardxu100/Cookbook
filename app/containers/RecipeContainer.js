@@ -10,14 +10,21 @@ import { observer } from 'mobx-react';
 @observer
 export default class RecipeContainer extends Component {
 	render() {
-		const { toggleEditOpen, isEditOpen, isAddOpen, toggleAddOpen, handleAddRecipe, handleEditRecipe, handleDeleteRecipe, recipes } = this.props.store;
+		const {
+			toggleEditOpen,
+			isAddOpen,
+			toggleAddOpen,
+			handleAddRecipe,
+			handleEditRecipe,
+			handleDeleteRecipe,
+			recipes
+		} = this.props.store;
 		return (
 			<div>
 				<RecipeList
 					toggleEditOpen={toggleEditOpen}
 					recipes={recipes}
 					onDeleteRecipe={handleDeleteRecipe}
-					isOpen={isEditOpen}
 	        onEditRecipe={handleEditRecipe}
 					/>
 				<ModalForm
