@@ -4,7 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import store from '../RecipeStore';
 import { inject, observer } from 'mobx-react';
 
-@inject("store") @observer
+@inject('store') @observer
 export default class MainLayout extends Component {
   componentWillMount() {
     injectTapEventPlugin();
@@ -15,7 +15,7 @@ export default class MainLayout extends Component {
     return (
       <div>
         <AppBar title="CookBook" />
-        {this.props.children}
+        { React.cloneElement(this.props.children, this.props) }
       </div>
     )
   }

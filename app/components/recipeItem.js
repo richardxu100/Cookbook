@@ -3,7 +3,7 @@ import { Card, CardHeader, CardMedia, CardTitle, CardText, CardActions } from 'm
 import FlatButton from 'material-ui/FlatButton';
 import styles from '../styles/styles';
 
-const RecipeItem = (props) => {
+const RecipeItem = ({ toggleEditOpen }) => {
   return (
     <Card style={styles.recipeCard}>
       <CardHeader
@@ -24,7 +24,7 @@ const RecipeItem = (props) => {
         #2. Another Thing
       </CardText>
       <CardActions>
-        <FlatButton label="Edit" />
+        <FlatButton onClick={toggleEditOpen} label="Edit" />
         <FlatButton label="Delete" />
       </CardActions>
     </Card>

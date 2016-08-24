@@ -3,12 +3,12 @@ import RecipeItem from './recipeItem';
 import { Grid, Col, Row } from 'react-flexbox-grid';
 import styles from '../styles/styles';
 
-const RecipeList = (props) => {
+const RecipeList = ({ toggleEditOpen }) => {
   return (
     <Grid style={styles.recipeGrid}>
       <Row>
         <Col xs={12} md={6} lg={4}>
-          <RecipeItem />
+          <RecipeItem toggleEditOpen={toggleEditOpen} />
         </Col>
         <Col xs={12} md={6} lg={4}>
           <RecipeItem />
