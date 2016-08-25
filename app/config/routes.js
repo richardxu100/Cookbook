@@ -1,6 +1,8 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import RecipeContainer from '../containers/RecipeContainer';
+import Login from '../containers/Login';
+import Register from '../containers/Register';
 import MainLayout from '../containers/MainLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from '../styles/muiTheme';
@@ -13,6 +15,8 @@ const routes = (
 			<Router history={browserHistory}>
 				<Route path="/" component={MainLayout}>
 					<IndexRoute component={RecipeContainer} />
+					<Route path="/login" component={Login} />
+					<Route path="/register" component={Register} />
 				</Route>
 			</Router>
 		</MuiThemeProvider>

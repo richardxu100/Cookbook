@@ -13,6 +13,26 @@ const styles = {
   },
   textField: {
     marginTop: 10
+  },
+  loginContainer: {
+    maxWidth: 500,
+    margin: '50px auto',
+    padding: 20
+    // color: 'lightblue'
+  },
+  loginLink: {
+    color: 'blue',
+    fontSize: 14
+  },
+  loginQuestion: {
+    margin: 10,
+    fontSize: 14
+  },
+  loginActions: {
+    marginTop: 10,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 }
 

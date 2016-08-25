@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../styles/style.sass';
 import RecipeList from '../components/recipeList';
 import ModalForm from './ModalForm';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
