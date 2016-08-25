@@ -1,25 +1,8 @@
 import { observable } from 'mobx';
-
-class Recipe {
-  @observable name;
-  @observable ingredients;
-  @observable imageURL;
-  @observable id;
-  @observable isEditOpen;
-
-  constructor(name, ingredients, imageURL, id) {
-    this.name = name;
-    this.ingredients = ingredients;
-    this.imageURL = imageURL;
-    this.id = id ? id : Date.now();
-    this.isEditOpen = false;
-  }
-}
-const chickenRecipe = new Recipe('chicken', ['chicken', 'bread', 'butter'], 'http://images.media-allrecipes.com/userphotos/250x250/00/64/20/642001.jpg');
+import Recipe, { chickenRecipe } from './stores/Recipe';
 
 class RecipeStore {
   @observable recipes = [chickenRecipe];
-  // @observable isEditOpen = false;
   @observable isAddOpen = false;
 
   toggleEditOpen = (id) => {
@@ -39,14 +22,13 @@ class RecipeStore {
   }
 
   handleEditRecipe = (id, name, ingredients, imageURL) => {
-    const newRecipes = this.recipes.map(recipe => {
-      return recipe.id === id ?
-        this.changeRecipe(recipe, id, name, ingredients, imageURL) :
-        recipe
-    })
+    const newRecipes = this.recipes.map(recipe =>
+      recipe.id === id ?
+      this.changeRecipe(recipe, id, name, ingredients, imageURL) : recipe
+    )
     this.recipes = newRecipes;
     console.log('id in handleEditRecipe: ', id);
-    this.toggleEditOpen.bind(this, id);
+    this.toggleEditOpen.bind(this, id); // what does bind(this, id) do that's so special?
   }
 
   handleDeleteRecipe = (id) => {
