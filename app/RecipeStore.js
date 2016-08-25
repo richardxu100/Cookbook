@@ -28,11 +28,10 @@ class RecipeStore {
     )
     this.recipes = newRecipes;
     console.log('id in handleEditRecipe: ', id);
-    this.toggleEditOpen.bind(this, id); // what does bind(this, id) do that's so special?
+    this.toggleEditOpen.bind(this, id); // what does bind(this, id) do that's so special? Maybe because you need to use a parameter?
   }
 
   handleDeleteRecipe = (id) => {
-    console.log('delete id: ', id);
     const newRecipes = this.recipes.filter(recipe => recipe.id !== id);
     this.recipes = newRecipes;
   }
