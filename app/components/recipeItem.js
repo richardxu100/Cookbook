@@ -51,9 +51,12 @@ const RecipeItem = observer(({
 RecipeItem.PropTypes = {
   toggleEditOpen: PropTypes.func.isRequired,
   deleteRecipe: PropTypes.func.isRequired,
+  onEditRecipe: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   ingredients: PropTypes.array.isRequired,
-  imageURL: PropTypes.string
+  imageURL: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  recipe: PropTypes.object.isRequired
 }
 
 export default RecipeItem;

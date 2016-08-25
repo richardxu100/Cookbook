@@ -3,7 +3,12 @@ import RecipeItem from './recipeItem';
 import { Grid, Col, Row } from 'react-flexbox-grid';
 import styles from '../styles/styles';
 
-const RecipeList = ({ toggleEditOpen, onDeleteRecipe, recipes, onEditRecipe }) => {
+const RecipeList = ({
+  toggleEditOpen,
+  onDeleteRecipe,
+  recipes,
+  onEditRecipe
+}) => {
   return (
     <Grid style={styles.recipeGrid}>
       <Row>
@@ -28,6 +33,8 @@ const RecipeList = ({ toggleEditOpen, onDeleteRecipe, recipes, onEditRecipe }) =
 
 RecipeList.PropTypes = {
   toggleEditOpen: PropTypes.func.isRequired,
+  onDeleteRecipe: PropTypes.func.isRequired,
+  onEditRecipe: PropTypes.func.isRequired,
   recipes: PropTypes.array.isRequired
 }
 
