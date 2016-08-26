@@ -19,12 +19,13 @@ export default class Login extends Component {
   enableButton = () => this.setState({canSubmit: true});
   disableButton = () => this.setState({canSubmit: false});
 
-  handleLogin = () => {
+  handleLogin = (e) => {
+    e.preventDefault(); // make sure to preventDefault on form submits
     const email = this._email.state.value;
     const password = this._password.state.value;
     console.log(email, password);
+    this.context.router.push('/');
     this.props.userStore.handleLogin(email, password);
-    // this.context.router.push({pathname: '/'});
   }
 
   render() {
@@ -54,7 +55,7 @@ export default class Login extends Component {
             <RaisedButton
               type="submit"
               secondary={true}
-              label="Login"
+              label={<Link to="/">Login</Link>}
               onClick={this.handleLogin}
               disabled={!this.state.canSubmit} />
             <span style={styles.loginQuestion}>Need an account?

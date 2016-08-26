@@ -15,11 +15,15 @@ export default class MainLayout extends Component {
   }
 
   render() {
+    const { currentUser, signOut } = this.props.userStore;
     return (
       <div>
         <AppBar
           title={<Link to="/">CookBook</Link>}
-          iconElementRight={<FlatButton label={<Link to="/login">Login</Link>} />} />
+          iconElementRight={currentUser ?
+            <FlatButton label="sign-out" onClick={signOut} /> :
+            <FlatButton label={<Link to="/login">Login</Link>} />
+          } />
         { React.cloneElement(this.props.children, this.props) }
       </div>
     )

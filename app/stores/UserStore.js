@@ -14,8 +14,10 @@ class User {
   }
 }
 
+const rich = new User('rich', 'fried', 'richardxu100@gmail.com');
+
 class UserStore {
-  @observable users = [];
+  @observable users = [rich];
   @observable loggedIn = false;
   @observable currentUser;
 
@@ -35,6 +37,11 @@ class UserStore {
 
   handleLogin = (email, password) => {
     this.users.forEach(user => this.correctLogin(user, email, password))
+  }
+
+  signOut = () => {
+    this.currentUser = null;
+    this.loggedIn = false;
   }
 
 }
