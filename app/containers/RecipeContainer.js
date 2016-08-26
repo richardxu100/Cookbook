@@ -17,7 +17,7 @@ export default class RecipeContainer extends Component {
 			handleEditRecipe,
 			handleDeleteRecipe,
 			recipes
-		} = this.props.store;
+		} = this.props.recipeStore;
 		return (
 			<div>
 				<RecipeList

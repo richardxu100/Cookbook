@@ -6,12 +6,13 @@ import Register from '../containers/Register';
 import MainLayout from '../containers/MainLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from '../styles/muiTheme';
-import store from '../RecipeStore';
+import recipeStore from '../stores/RecipeStore';
+import userStore from '../stores/UserStore';
 import { Provider } from 'mobx-react';
 
 const routes = (
-	<Provider store={store}>
-		<MuiThemeProvider store={store} muiTheme={muiTheme}>
+	<Provider recipeStore={recipeStore} userStore={userStore}>
+		<MuiThemeProvider muiTheme={muiTheme}>
 			<Router history={browserHistory}>
 				<Route path="/" component={MainLayout}>
 					<IndexRoute component={RecipeContainer} />

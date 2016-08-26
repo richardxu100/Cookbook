@@ -30,6 +30,7 @@ const styles = {
   },
   loginActions: {
     marginTop: 10,
+    marginBottom: 10,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'

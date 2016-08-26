@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import Recipe, { chickenRecipe } from './stores/Recipe';
+import Recipe, { chickenRecipe } from './Recipe';
 
 class RecipeStore {
   @observable recipes = [chickenRecipe];
@@ -37,5 +37,5 @@ class RecipeStore {
   }
 }
 
-const store = window.store = new RecipeStore();
-export default store;
+const recipeStore = window.recipeStore = new RecipeStore();
+export default recipeStore;

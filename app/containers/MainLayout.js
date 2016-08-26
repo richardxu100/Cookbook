@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import store from '../RecipeStore';
+import recipeStore from '../stores/RecipeStore';
+import userStore from '../stores/UserStore';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router';
 import '../styles/style.sass';
 
-@inject("store") @observer
+@inject('recipeStore', 'userStore') @observer
 export default class MainLayout extends Component {
   componentWillMount() {
     injectTapEventPlugin();
