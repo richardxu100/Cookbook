@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
 import Paper from 'material-ui/Paper';
 // import TextField from 'material-ui/TextField';
@@ -8,8 +8,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
 export default class Login extends Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
+    context.router;
     this.state = {
       canSubmit: false
     }
@@ -21,7 +22,9 @@ export default class Login extends Component {
   handleLogin = () => {
     const email = this._email.state.value;
     const password = this._password.state.value;
+    console.log(email, password);
     this.props.userStore.handleLogin(email, password);
+    // this.context.router.push({pathname: '/'});
   }
 
   render() {
@@ -45,15 +48,15 @@ export default class Login extends Component {
             fullWidth={true}
             hintText="Password"
             required
-            name="password" />
+            name="password"
+            ref={r => this._password = r} />
           <div style={styles.loginActions}>
             <RaisedButton
               type="submit"
               secondary={true}
               label="Login"
               onClick={this.handleLogin}
-              disabled={!this.state.canSubmit}
-              ref={r => this._password = r} />
+              disabled={!this.state.canSubmit} />
             <span style={styles.loginQuestion}>Need an account?
               <Link to="/register" style={styles.loginLink}> Register</Link>
             </span>
@@ -62,4 +65,8 @@ export default class Login extends Component {
       </Paper>
     )
   }
+}
+
+Login.contextTypes = {
+  router: PropTypes.object.isRequired
 }

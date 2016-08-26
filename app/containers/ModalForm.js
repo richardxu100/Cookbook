@@ -59,7 +59,6 @@ export default class ModalForm extends Component {
         onTouchTap={this.handleSubmitRecipe.bind(this, id)}
       />,
     ];
-    console.log('the state is: ', this.state);
     return (
       <Dialog
         title={this.props.title}

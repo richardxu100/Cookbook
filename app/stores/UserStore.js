@@ -22,7 +22,7 @@ class UserStore {
   correctLogin = (user, email, password) => {
     if (user.email === email && user.password === password) {
       this.loggedIn = true;
-      currentUser = user;
+      this.currentUser = user;
       console.log('Login succes!');
     }
     else console.log("You can't log in kid!");

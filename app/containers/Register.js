@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
 import Paper from 'material-ui/Paper';
 import { Form } from 'formsy-react';
@@ -7,8 +7,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
 export default class Register extends Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
+    context.router; // needed for this.context.router.push
     this.state = {
       canSubmit: false
     }
@@ -23,6 +24,7 @@ export default class Register extends Component {
     const password = this._password.state.value;
     console.log(name, email, password);
     this.props.userStore.handleRegister(name, email, password);
+    this.context.router.push({pathname: '/login'});
   }
 
   render() {
@@ -60,7 +62,7 @@ export default class Register extends Component {
             name="confirmPassword"
             validations="equalsField:password"
             validationError="Your passwords do not match"
-            required />
+             />
 
           <div style={styles.loginActions}>
             <RaisedButton
@@ -78,4 +80,8 @@ export default class Register extends Component {
       </Paper>
     )
   }
+}
+
+Register.contextTypes = {
+  router: PropTypes.object.isRequired
 }
