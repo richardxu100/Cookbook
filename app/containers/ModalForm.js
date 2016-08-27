@@ -45,19 +45,17 @@ export default class ModalForm extends Component {
 
   render() {
     const { isOpen, toggleOpen, id } = this.props;
-    if (this.props.id) {
+    if (id) {
       const { name, ingredients, imageURL } = this.state;
     }
     const actions = [
       <FlatButton
         label="Cancel"
-        onTouchTap={toggleOpen.bind(this, id)}
-      />,
+        onTouchTap={toggleOpen.bind(this, id)} />,
       <FlatButton
         label={this.props.id ? 'Edit' : 'Add'}
         primary={true}
-        onTouchTap={this.handleSubmitRecipe.bind(this, id)}
-      />,
+        onTouchTap={this.handleSubmitRecipe.bind(this, id)} />,
     ];
     return (
       <Dialog
@@ -65,46 +63,26 @@ export default class ModalForm extends Component {
         actions={actions}
         modal={true}
         open={isOpen}>
-        { this.props.id ?
-          <TextField
-            hintText="Recipe Name"
-            value={this.state.name}
-            ref={r => this.recipeName = r}
-            onChange={this.handleNameChange} /> :
-          <TextField
-            hintText="Recipe Name"
-            ref={r => this.recipeName = r} />
-          }
-            <br />
-        { this.props.id ?
-          <TextField
-            style={styles.textField}
-            hintText="Ingredients: separated by a comma, for, each, ingredient"
-            fullWidth={true}
-            value={this.state.ingredients}
-            ref={r => this.ingredients = r}
-            onChange={this.handleIngredientsChange} /> :
-          <TextField
-            style={styles.textField}
-            ref={r => this.ingredients = r}
-            hintText="Ingredients: separated by a comma, for, each, ingredient"
-            fullWidth={true} />
-          }
-        { this.props.id ?
-          <TextField
-            style={styles.textField}
-            hintText="Optional Image URL"
-            fullWidth={true}
-            value={this.state.imageURL}
-            ref={r => this.imageURL = r}
-            onChange={this.handleImageURLChange} /> :
-          <TextField
-            style={styles.textField}
-            hintText="Optional Image URL"
-            fullWidth={true}
-            ref={r => this.imageURL = r} />
-          }
-      </Dialog>
+        <TextField
+          hintText="Recipe Name"
+          ref={r => this.recipeName = r}
+          value = {id ? this.state.name : undefined}
+          onChange = {id ? this.handleNameChange : undefined} /> <br />
+        <TextField
+          style={styles.textField}
+          hintText="Ingredients: separated by a comma, for, each, ingredient"
+          fullWidth={true}
+          ref={r => this.ingredients = r}
+          value={id ? this.state.ingredients : undefined}
+          onChange={id ? this.handleIngredientsChange : undefined} /> 
+        <TextField
+          style={styles.textField}
+          hintText="Optional Image URL"
+          fullWidth={true}
+          ref={r => this.imageURL = r}
+          value={id ? this.state.imageURL : undefined}
+          onChange={id ? this.handleImageURLChange : undefined} />
+        </Dialog>
     )
   }
 }

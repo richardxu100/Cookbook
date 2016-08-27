@@ -24,5 +24,5 @@ new Recipe(
   ['chicken', 'bread', 'butter'],
   'http://images.media-allrecipes.com/userphotos/250x250/00/64/20/642001.jpg',
   null,
-  'Richard'
+  {name: 'Rich'}
 );
