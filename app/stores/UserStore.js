@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, computed } from 'mobx';
 
 class User {
   @observable name;
@@ -18,14 +18,12 @@ const rich = new User('rich', 'fried', 'richardxu100@gmail.com');
 
 class UserStore {
   @observable users = [rich];
-  @observable loggedIn = false;
   @observable currentUser;
 
   correctLogin = (user, email, password) => {
     if (user.email === email && user.password === password) {
-      this.loggedIn = true;
       this.currentUser = user;
-      console.log('Login succes!');
+      console.log('Login success!');
     }
     else console.log("You can't log in kid!");
   }
@@ -35,14 +33,8 @@ class UserStore {
     this.users = newUsers;
   }
 
-  handleLogin = (email, password) => {
-    this.users.forEach(user => this.correctLogin(user, email, password))
-  }
-
-  signOut = () => {
-    this.currentUser = null;
-    this.loggedIn = false;
-  }
+  handleLogin = (email, password) => this.users.forEach(user => this.correctLogin(user, email, password))
+  signOut = () => this.currentUser = undefined;
 
 }
 

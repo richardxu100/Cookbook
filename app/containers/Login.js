@@ -57,7 +57,8 @@ export default class Login extends Component {
               secondary={true}
               label={<Link to="/">Login</Link>}
               onClick={this.handleLogin}
-              disabled={!this.state.canSubmit} />
+              // disabled={!this.state.canSubmit} />
+              />
             <span style={styles.loginQuestion}>Need an account?
               <Link to="/register" style={styles.loginLink}> Register</Link>
             </span>
