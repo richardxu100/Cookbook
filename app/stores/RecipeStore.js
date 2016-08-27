@@ -25,7 +25,12 @@ class RecipeStore {
     else console.log("You don't have permission to edit this!");
   }
 
-  toggleAddOpen = () => this.isAddOpen = !this.isAddOpen;
+  toggleAddOpen = () => {
+    userStore.currentUser ? // if a person is logged in
+    this.isAddOpen = !this.isAddOpen :
+    console.log('Please login before adding a recipe!');
+  }
+  
   ingredientsToArray = ingredients => ingredients.trim().split(',').map(i => i.trim());
   changeRecipe = (recipe, id, name, ingredients, imageURL) => new Recipe(name, this.ingredientsToArray(ingredients), imageURL, id);
 
