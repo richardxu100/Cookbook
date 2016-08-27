@@ -13,8 +13,10 @@ const RecipeItem = observer(({
   deleteRecipe,
   id,
   onEditRecipe,
-  recipe
+  recipe,
+  submitter
 }) => {
+  const overlayTitle = `By ${submitter.name}`;
   return (
     <div>
       <Card style={styles.recipeCard}>
@@ -23,7 +25,9 @@ const RecipeItem = observer(({
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <CardMedia expandable={true}><img src={imageURL} /></CardMedia>
+        <CardMedia overlay={<CardTitle title={overlayTitle} />}>
+          <img src={imageURL} />
+        </CardMedia>
         <CardTitle expandable={true} title="Ingredients" />
         {ingredients && ingredients.map((ingredient, i) =>
           <CardText key={i} expandable={true}>#{i+1}. {ingredient}</CardText>

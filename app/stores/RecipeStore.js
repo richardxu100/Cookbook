@@ -1,5 +1,6 @@
 import { observable } from 'mobx';
 import Recipe, { chickenRecipe } from './Recipe';
+import userStore from './UserStore';
 
 class RecipeStore {
   @observable recipes = [chickenRecipe];
@@ -7,7 +8,21 @@ class RecipeStore {
 
   toggleEditOpen = (id) => {
     console.log('the id is: ', id);
-    this.recipes.forEach(recipe => recipe.id === id ? recipe.isEditOpen = !recipe.isEditOpen : recipe);
+    // if ()
+    // this.recipes.forEach(recipe => recipe.id === id ? recipe.isEditOpen = !recipe.isEditOpen : recipe);
+    this.recipes.forEach(recipe => {
+      recipe.id === id ?
+        this.isCurrentSubmitter(recipe, userStore) :
+        recipe
+      })
+  }
+
+  isCurrentSubmitter = (recipe, userStore) => {
+    console.log('Recipe submitter is: ', recipe.submitter);
+    console.log('Current User is: ', userStore.currentUser);
+    if (recipe.submitter === userStore.currentUser)
+      recipe.isEditOpen = !recipe.isEditOpen;
+    else console.log("You don't have permission to edit this!");
   }
 
   toggleAddOpen = () => this.isAddOpen = !this.isAddOpen;
@@ -16,7 +31,7 @@ class RecipeStore {
 
   handleAddRecipe = (name, ingredients, imageURL) => {
     const ingredientsArray = this.ingredientsToArray(ingredients);
-    const newRecipes = [...this.recipes, new Recipe(name, ingredientsArray, imageURL)];
+    const newRecipes = [...this.recipes, new Recipe(name, ingredientsArray, imageURL, null, userStore.currentUser)];
     this.recipes = newRecipes;
     this.toggleAddOpen();
   }

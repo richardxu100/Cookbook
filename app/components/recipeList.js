@@ -23,7 +23,8 @@ const RecipeList = ({
               deleteRecipe={onDeleteRecipe}
               id={recipe.id}
               recipe={recipe}
-              onEditRecipe={onEditRecipe}/>
+              onEditRecipe={onEditRecipe}
+              submitter={recipe.submitter} />
           </Col>
         )}
       </Row>
