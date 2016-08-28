@@ -28,15 +28,16 @@ class RecipeStore {
   toggleAddOpen = () => {
     userStore.currentUser ? // if a person is logged in
     this.isAddOpen = !this.isAddOpen :
-    console.log('Please login before adding a recipe!');
+    notie.alert('info', 'Please login before adding a recipe', 1.5);
   }
-  
+
   ingredientsToArray = ingredients => ingredients.trim().split(',').map(i => i.trim());
   changeRecipe = (recipe, id, name, ingredients, imageURL) => new Recipe(name, this.ingredientsToArray(ingredients), imageURL, id);
 
   handleAddRecipe = (name, ingredients, imageURL) => {
     const ingredientsArray = this.ingredientsToArray(ingredients);
-    const newRecipes = [...this.recipes, new Recipe(name, ingredientsArray, imageURL, null, userStore.currentUser)];
+    const newImageURL = imageURL !== '' ? imageURL : 'http://blogs.discovermagazine.com/crux/files/2013/08/bowl-of-rice1.jpg';
+    const newRecipes = [...this.recipes, new Recipe(name, ingredientsArray, newImageURL, null, userStore.currentUser)];
     this.recipes = newRecipes;
     this.toggleAddOpen();
   }

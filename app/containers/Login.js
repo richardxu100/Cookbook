@@ -24,8 +24,11 @@ export default class Login extends Component {
     const email = this._email.state.value;
     const password = this._password.state.value;
     console.log(email, password);
-    this.context.router.push('/');
-    this.props.userStore.handleLogin(email, password);
+    if (this.props.userStore.canLogin(email, password)) {
+      this.context.router.push('/');
+      this.props.userStore.handleLogin(email, password);
+    }
+    else notie.alert('error', 'Username and password do not match a user', 1.5);
   }
 
   render() {

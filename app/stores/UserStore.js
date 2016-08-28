@@ -23,9 +23,27 @@ class UserStore {
   correctLogin = (user, email, password) => {
     if (user.email === email && user.password === password) {
       this.currentUser = user;
-      console.log('Login success!');
     }
-    else console.log("You can't log in kid!");
+    else notie.alert('error', 'Username and password do not match a user', 1.5);
+  }
+
+  canLogin = (email, password) => {
+    let count = 0;
+    this.users.forEach(user => {
+      if (user.email === email && user.password === password)
+        count++; // make sure you don't have duplicate users
+    })
+    if (count === 1) return true;
+    else             return false;
+  }
+
+  canRegister = (email) => {
+    let count = 0;
+    this.users.forEach(user => {
+      if (user.email === email) count++;
+    })
+    if (count === 0) return true; // no user already registered
+    else             return false;
   }
 
   handleRegister = (name, email, password) => {

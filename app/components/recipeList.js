@@ -13,7 +13,7 @@ const RecipeList = ({
     <Grid style={styles.recipeGrid}>
       <Row>
         {recipes.map(recipe =>
-          <Col xs={12} md={6} lg={4} key={recipe.id}>
+          <Col xs={12} md={4} lg={3} key={recipe.id}>
             <RecipeItem
               key={recipe.id}
               toggleEditOpen={toggleEditOpen}
