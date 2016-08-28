@@ -65,14 +65,14 @@ export default class Register extends Component {
             name="confirmPassword"
             validations="equalsField:password"
             validationError="Your passwords do not match"
-             />
+           />
 
           <div style={styles.loginActions}>
             <RaisedButton
               type="submit"
               secondary={true}
               label="Register"
-              disabled={!this.state.canSubmit}
+              // disabled={!this.state.canSubmit}
               />
             <span style={styles.loginQuestion}>Already have an account?
               <Link to="/login" style={styles.loginLink}> Login</Link>

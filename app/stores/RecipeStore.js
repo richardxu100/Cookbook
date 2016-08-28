@@ -18,11 +18,9 @@ class RecipeStore {
   }
 
   isCurrentSubmitter = (recipe, userStore) => {
-    console.log('Recipe submitter is: ', recipe.submitter);
-    console.log('Current User is: ', userStore.currentUser);
     if (recipe.submitter === userStore.currentUser)
       recipe.isEditOpen = !recipe.isEditOpen;
-    else console.log("You don't have permission to edit this!");
+    else notie.alert('warning', "You don't have permission to edit this recipe!", 1.25);
   }
 
   toggleAddOpen = () => {
@@ -53,8 +51,16 @@ class RecipeStore {
   }
 
   handleDeleteRecipe = (id) => {
-    const newRecipes = this.recipes.filter(recipe => recipe.id !== id);
-    this.recipes = newRecipes;
+    let selectedRecipe;
+    for (let i = 0; i < this.recipes.length; i++) {
+      if (this.recipes[i].id === id)
+        selectedRecipe = this.recipes[i];
+    }
+    if (selectedRecipe.submitter === userStore.currentUser) {
+      const newRecipes = this.recipes.filter(recipe => recipe.id !== id);
+      this.recipes = newRecipes;
+    }
+    else notie.alert('error', "You do not have permission to delete this recipe!", 1);
   }
 }
 

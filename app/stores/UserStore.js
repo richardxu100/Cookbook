@@ -24,7 +24,6 @@ class UserStore {
     if (user.email === email && user.password === password) {
       this.currentUser = user;
     }
-    else notie.alert('error', 'Username and password do not match a user', 1.5);
   }
 
   canLogin = (email, password) => {
@@ -51,7 +50,15 @@ class UserStore {
     this.users = newUsers;
   }
 
-  handleLogin = (email, password) => this.users.forEach(user => this.correctLogin(user, email, password))
+  handleLogin = (email, password) => {
+    this.users.forEach(user => {
+      // this.correctLogin(user, email, password)
+      if (user.email === email && user.password === password) {
+        this.currentUser = user;
+      }
+    })
+  }
+
   signOut = () => this.currentUser = undefined;
 
 }
