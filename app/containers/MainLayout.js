@@ -17,6 +17,7 @@ export default class MainLayout extends Component {
   }
 
   componentWillMount = () => injectTapEventPlugin(); // called before render
+
   login = () => browserHistory.push('/login'); // some reason can't pass context router weird stuff
 
   signOut = () => {
@@ -26,7 +27,6 @@ export default class MainLayout extends Component {
 
   render() {
     const { currentUser, signOut } = this.props.userStore;
-    console.log('Value of currentUser as props: ', this.props.userStore.currentUser);
     return (
       <div>
         <AppBar

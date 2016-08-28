@@ -8,8 +8,6 @@ class RecipeStore {
 
   toggleEditOpen = (id) => {
     console.log('the id is: ', id);
-    // if ()
-    // this.recipes.forEach(recipe => recipe.id === id ? recipe.isEditOpen = !recipe.isEditOpen : recipe);
     this.recipes.forEach(recipe => {
       recipe.id === id ?
         this.isCurrentSubmitter(recipe, userStore) :
@@ -20,7 +18,7 @@ class RecipeStore {
   isCurrentSubmitter = (recipe, userStore) => {
     if (recipe.submitter === userStore.currentUser)
       recipe.isEditOpen = !recipe.isEditOpen;
-    else notie.alert('warning', "You don't have permission to edit this recipe!", 1.25);
+    else notie.alert('error', "You don't have permission to edit this recipe!", 1.25);
   }
 
   toggleAddOpen = () => {
