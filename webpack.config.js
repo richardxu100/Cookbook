@@ -5,6 +5,7 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 	inject: 'body'
 })
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
 	entry: [
@@ -13,7 +14,7 @@ module.exports = {
 		'./app/index.js'
 	],
 	output: {
-		path: './dist', // check to see if just ./dist would work before __dirname + '/dist'
+		path: path.join(__dirname + '/dist'), // need to do path.join here!
 		filename: 'index_bundle.js'
 	},
 	module: {
@@ -41,6 +42,7 @@ module.exports = {
 	},
 	plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()],
 	devServer: {
+		contentBase: './dist',
 		hot: true
 	},
 	node: {
