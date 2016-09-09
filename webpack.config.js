@@ -15,6 +15,7 @@ module.exports = {
 	],
 	output: {
 		path: path.join(__dirname + '/dist'), // need to do path.join here!
+		publicPath: '/',
 		filename: 'index_bundle.js'
 	},
 	module: {

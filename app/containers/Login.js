@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../styles/styles';
 import Paper from 'material-ui/Paper';
-// import TextField from 'material-ui/TextField';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import { Form } from 'formsy-react';
 import RaisedButton from 'material-ui/RaisedButton';
