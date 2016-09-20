@@ -66,7 +66,7 @@ export default class ModalForm extends Component {
         modal={true}
         open={isOpen}>
         <Form
-          onValidSubmit={this.handleRegister}
+          onValidSubmit={this.handleSubmitRecipe.bind(this, id)}
           onValid={this.enableButton}
           onInvalid={this.disableButton}>
           <FormsyText
@@ -93,6 +93,7 @@ export default class ModalForm extends Component {
             ref={r => this._imageURL = r}
             value={id ? this.state.imageURL : undefined}
             onChange={id ? this.handleImageURLChange : undefined} />
+            <input type="submit" style={{display: 'none'}} />
           </Form>
         </Dialog>
     )
