@@ -7,12 +7,8 @@ class RecipeStore {
   @observable isAddOpen = false;
 
   toggleEditOpen = (id) => {
-    console.log('the id is: ', id);
-    this.recipes.forEach(recipe => {
-      recipe.id === id ?
-        this.isCurrentSubmitter(recipe, userStore) :
-        recipe
-      })
+    const foundRecipe = this.recipes.find(r => r.id === id);
+    this.isCurrentSubmitter(foundRecipe, userStore);
   }
 
   isCurrentSubmitter = (recipe, userStore) => {
@@ -49,12 +45,8 @@ class RecipeStore {
   }
 
   handleDeleteRecipe = (id) => {
-    let selectedRecipe;
-    for (let i = 0; i < this.recipes.length; i++) {
-      if (this.recipes[i].id === id)
-        selectedRecipe = this.recipes[i];
-    }
-    if (selectedRecipe.submitter === userStore.currentUser) {
+    const foundRecipe = this.recipes.find(r => r.id === id);
+    if (foundRecipe.submitter === userStore.currentUser) {
       const newRecipes = this.recipes.filter(recipe => recipe.id !== id);
       this.recipes = newRecipes;
     }
