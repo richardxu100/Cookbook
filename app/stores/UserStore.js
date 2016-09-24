@@ -6,22 +6,11 @@ class UserStore {
   @observable currentUser;
 
   canLogin = (email, password) => {
-    let count = 0;
-    this.users.forEach(user => {
-      if (user.email === email && user.password === password)
-        count++; // make sure you don't have duplicate users
-    })
-    if (count === 1) return true;
-    else             return false;
+    return this.users.find(u => u.email === email && u.password === password) ? true : false;
   }
 
   canRegister = (email) => {
-    let count = 0;
-    this.users.forEach(user => {
-      if (user.email === email) count++;
-    })
-    if (count === 0) return true; // no user already registered
-    else             return false;
+    return this.users.find(user => user.email === email) ? false : true;
   }
 
   handleRegister = (name, email, password) => {
@@ -30,10 +19,7 @@ class UserStore {
   }
 
   handleLogin = (email, password) => {
-    this.users.forEach(user => {
-      if (user.email === email && user.password === password)
-        this.currentUser = user;
-    })
+    this.currentUser = this.users.find(u => u.email === email && u.password === password);
   }
 
   signOut = () => this.currentUser = undefined;
